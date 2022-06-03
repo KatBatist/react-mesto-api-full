@@ -31,7 +31,7 @@ const app = express();
 const allowedCors = [
   'https://domainbatist.students.nomoredomains.xyz',
   'https://api.domainbatist.students.nomoredomains.xyz',
-  'http://localhost:3000',
+  'http://localhost:3001',
 ];
 
 app.use(cors({
