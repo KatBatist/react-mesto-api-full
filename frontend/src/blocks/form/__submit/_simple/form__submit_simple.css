@@ -1,0 +1,18 @@
+.form__submit_simple {
+  width: 358px;
+  margin: 216px 0 auto;
+  background: #FFFFFF;
+  color: #000000;
+}
+
+.form__submit_simple:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 619px) {
+  .form__submit_simple {
+    width: 260px;
+    margin: 173px 0 auto;
+  }
+}

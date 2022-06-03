@@ -1,0 +1,16 @@
+.form__input_simple {
+  color: #CCCCCC;
+  border-bottom: 2px solid #CCCCCC;
+  width: 358px;  
+  background: unset;
+}    
+    
+@media screen and (max-width: 619px) {
+  .form__input_simple {
+    width: 260px; 
+  }
+}
+
+input:-webkit-autofill {
+  transition: all 5000s ease-in-out;
+}

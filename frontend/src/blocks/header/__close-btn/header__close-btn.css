@@ -1,0 +1,17 @@
+.header__close-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background-image: url(../../../images/close-menu-btn.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: 100%;
+  border: none;
+  transition: opacity linear .2s;   
+}
+  
+.header__close-btn:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}

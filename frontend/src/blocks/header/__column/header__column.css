@@ -1,0 +1,7 @@
+.header__column {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+  padding-top: 12px;
+}

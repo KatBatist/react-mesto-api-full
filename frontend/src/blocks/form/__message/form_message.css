@@ -1,0 +1,15 @@
+.form__message {
+  margin: 15px 0 auto;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  transition: opacity linear .2s;
+}
+
+@media screen and (max-width: 619px) {
+  .form__message {
+    margin: 20px 0 auto;
+  }
+}

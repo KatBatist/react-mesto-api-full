@@ -1,0 +1,10 @@
+.card__container {
+  width: 100%;
+  min-height: 79px;
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

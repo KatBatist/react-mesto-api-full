@@ -1,0 +1,8 @@
+.form__input {
+  padding: 30px 0 12px;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  border: none;
+  outline: none;
+}

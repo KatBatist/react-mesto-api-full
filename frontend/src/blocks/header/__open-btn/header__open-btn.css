@@ -1,0 +1,23 @@
+.header__open-btn {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background-image: url(../../../images/open-menu-btn.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: unset;
+  transition: opacity linear .2s;  
+}
+  
+.header__open-btn:hover {
+  opacity: .6;
+  cursor: pointer;
+}
+  
+@media screen and (min-width: 620px) {
+  .header__open-btn {
+    visibility: hidden;
+    width: 0;
+  }
+}
