@@ -30,7 +30,6 @@ const app = express();
 
 app.use(cors({
   origin: 'http://domainbatist.students.nomoredomains.xyz',
-  credentials: true,
 }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
