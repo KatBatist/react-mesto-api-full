@@ -9,7 +9,7 @@ class Api {
   }
 
   getInitialCards(token) {
-    return fetch(`${this._baseUrl}cards`, {
+    return fetch(`${this._baseUrl}/cards`, {
       method: 'GET', 
       headers: {
         ...this._headers,
@@ -22,7 +22,7 @@ class Api {
     let method = 'DELETE';
     if (isLike)
       method = 'PUT';
-    return fetch(`${this._baseUrl}cards/${cardId}/likes`, { 
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, { 
       method: method, 
       headers: {
         ...this._headers,
@@ -32,7 +32,7 @@ class Api {
   }
     
   getUserInfo(token) {
-    return fetch(`${this._baseUrl}users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: 'GET', 
       headers: {
         ...this._headers,
@@ -42,7 +42,7 @@ class Api {
   }
     
   setDeleteCard(cardId, token) {
-    return fetch(`${this._baseUrl}cards/${cardId}`, { 
+    return fetch(`${this._baseUrl}/cards/${cardId}`, { 
       method: 'DELETE', 
       headers: {
         ...this._headers,
@@ -52,7 +52,7 @@ class Api {
   }
 
   setAvatar(avatar, token) {
-    return fetch(`${this._baseUrl}users/me/avatar`, { 
+    return fetch(`${this._baseUrl}/users/me/avatar`, { 
       method: 'PATCH', 
       headers: {
         ...this._headers,
@@ -66,7 +66,7 @@ class Api {
   }
 
   setProfileInfo(name, about, token) {
-    return fetch(`${this._baseUrl}users/me`, { 
+    return fetch(`${this._baseUrl}/users/me`, { 
       method: 'PATCH', 
       headers: {
         ...this._headers,
@@ -81,7 +81,7 @@ class Api {
   }
 
   setAddCard(name, link, token) {
-    return fetch(`${this._baseUrl}cards`, { 
+    return fetch(`${this._baseUrl}/cards`, { 
       method: 'POST', 
       headers: {
         ...this._headers,

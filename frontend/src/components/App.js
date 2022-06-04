@@ -39,30 +39,18 @@ function App() {
 
   const [token, setToken] = React.useState('');
 
-  // const [isLoadingSetUserInfo, setIsLoadingSetUserInfo] = React.useState(false); // *
-  // const [isLoadingAvatarUpdate, setIsLoadingAvatarUpdate] = React.useState(false); // *
-  // const [isLoadingInitialData, setIsLoadingInitialData] = React.useState(false); // *
-  // const [isLoadingAddPlaceSubmit, setIsLoadingAddPlaceSubmit] = React.useState(false); // *
-
   React.useEffect(() => {
-    if (loggedIn) { // *
-      // setIsLoadingInitialData(true); // *
-
-      const token = localStorage.getItem('jwt'); // *
-
+    if (loggedIn) {
       Promise.all([api.getUserInfo(token), api.getInitialCards(token)])
       .then(([userData, cardsData]) => {
-        setCurrentUser(userData);
-        setCards(cardsData);
+        setCurrentUser(userData.data);
+        setCards(cardsData.data);
       })
       .catch((err) => {
         console.log(err);
-      })
-      .finally(() => {
-        // setIsLoadingInitialData(false); // *
-      })
+      });
     }
-  }, [loggedIn]);
+  }, [loggedIn, token]);
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
@@ -76,65 +64,56 @@ function App() {
   }
   
   function handleUpdateUser(user) {
+    const token = localStorage.getItem('jwt');
     // setIsLoadingSetUserInfo(true); // *
     api.setProfileInfo(user.name, user.about, token)
     .then((userData) => {
-      setCurrentUser(userData)
+      setCurrentUser(userData.data)
       closeAllPopups();
     })
     .catch((err) => {
       console.log(err);
-    })
-    .finally(() => {
-      // setIsLoadingSetUserInfo(false) // *
     });
   }
 
   function handleUpdateAvatar(user, evt) {
-    // setIsLoadingAvatarUpdate(true); // *
+    const token = localStorage.getItem('jwt');
     api.setAvatar(user.avatar, token)
     .then((userData) => {
-      setCurrentUser(userData)
+      setCurrentUser(userData.data)
       closeAllPopups();
     })
     .catch((err) => {
       console.log(err);
-    })
-    .finally(() => {
-      // setIsLoadingAvatarUpdate(false); // *
-    })
+    });
   }
 
   function handleAddPlaceSubmit(place) {
-    // setIsLoadingAddPlaceSubmit(true); // *
+    // const token = localStorage.getItem('jwt');
     api.setAddCard(place.name, place.link, token)
     .then((newCard) => {
-      setCards([newCard, ...cards]);
+      setCards([newCard.data, ...cards]);
       closeAllPopups();
     })
     .catch((err) => {
       console.log(err);
-    })
-    .finally(() => {
-      // setIsLoadingAddPlaceSubmit(false);
-    })
+    });
   }
 
-  
-
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    // const token = localStorage.getItem('jwt');
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.setLike(card._id, !isLiked, token)
     .then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      setCards((state) => state.map((c) => c._id === card._id ? newCard.data : c));
     })
     .catch((err) => {
       console.log(err);
     }); 
   }
   
-  function handleCardDelete(evt) {
-    evt.preventDefault(); // *
+  function handleCardDelete() {
+    // const token = localStorage.getItem('jwt');
     api.setDeleteCard(currentCard._id, token)
     .then(() => {
       setCards((state) => state.filter((c) => c._id !== currentCard._id));
@@ -198,8 +177,6 @@ function App() {
     auth.authorization(data)
     .then((data) => {
       setLoggedIn(true);
-      localStorage.setItem('jwt', data.token);
-      setToken(data.token); // *
       handleCheckToken();
       history.push('/');
     })
@@ -213,6 +190,7 @@ function App() {
     auth.checkToken(token)
     .then((data) => {
       setCurrentEmail(data.data.email);
+      setToken(token);
       setLoggedIn(true);
       history.push('/');
     })
@@ -257,7 +235,6 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDeleteClick}
             loggedIn={loggedIn}
-            // isLoadingInitialData={isLoadingInitialData}
           />
         </Switch>  
         <Footer />
@@ -270,21 +247,16 @@ function App() {
           isOpen={isEditProfilePopupOpen} 
           onClose={closeAllPopups} 
           onUpdateUser={handleUpdateUser}
-          // currentUser={currentUser}
-          // isLoadingData={isLoadingSetUserInfo}
-          // isLoadingInitialData={isLoadingInitialData}
         />  
         <AddPlacePopup 
           isOpen={isAddPlacePopupOpen} 
           onClose={closeAllPopups} 
           onAddPlace={handleAddPlaceSubmit}
-          // isLoadingData={isLoadingAddPlaceSubmit}
         />  
         <EditAvatarPopup 
           isOpen={isEditAvatarPopupOpen} 
           onClose={closeAllPopups} 
           onUpdateAvatar={handleUpdateAvatar}
-          // isLoadingData={isLoadingAvatarUpdate}
         />  
         <CardDeletePopup 
           isOpen={isCardDeletePopupOpen} 

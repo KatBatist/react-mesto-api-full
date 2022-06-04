@@ -1,8 +1,8 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 
-require('dotenv').config();
-const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 
 const bodyParser = require('body-parser');
@@ -28,19 +28,9 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-// const allowedCors = [
-//  'https://domainbatist.students.nomoredomains.xyz',
-//  'https://api.domainbatist.students.nomoredomains.xyz',
-//  'http://localhost:3000',
-// ];
-
-// app.use(cors({
-//   origin: allowedCors,
-// }));
-
 app.use(cors({
   origin: 'http://domainbatist.students.nomoredomains.xyz',
-  // credentials: true,
+  credentials: true,
 }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
@@ -51,14 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: 'Слишком много запросов с вашего IP, попробуйте повторить попытку позже',
-});
-
 app.use(requestLogger);
-app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
