@@ -28,14 +28,19 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const allowedCors = [
-  'https://domainbatist.students.nomoredomains.xyz',
-  'https://api.domainbatist.students.nomoredomains.xyz',
-  'http://localhost:3001',
-];
+// const allowedCors = [
+//  'https://domainbatist.students.nomoredomains.xyz',
+//  'https://api.domainbatist.students.nomoredomains.xyz',
+//  'http://localhost:3000',
+// ];
+
+// app.use(cors({
+//   origin: allowedCors,
+// }));
 
 app.use(cors({
-  origin: allowedCors,
+  origin: 'http://domainbatist.students.nomoredomains.xyz',
+  // credentials: true,
 }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
