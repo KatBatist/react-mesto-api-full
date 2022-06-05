@@ -29,7 +29,8 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(cors({
-  origin: 'http://domainbatist.students.nomoredomains.xyz',
+  origin: 'https://domainbatist.students.nomoredomains.xyz',
+  credentials: true,
 }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb');
