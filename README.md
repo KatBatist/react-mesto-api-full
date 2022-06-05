@@ -5,9 +5,9 @@
 
 Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. 
 
-[backend](backend/readme.md)
+[backend](backend/README.md)
 
-[frontend](backend/readme.md)
+[frontend](backend/README.md)
 
 [sait](https://domainbatist.students.nomoredomains.xyz/sign-up)
 
